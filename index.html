@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav AI</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.chat-container{
+  width:90%;
+  max-width:500px;
+  background:#1e293b;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.header{
+  background:#2563eb;
+  padding:20px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.chat-box{
+  height:400px;
+  overflow-y:auto;
+  padding:15px;
+}
+
+.message{
+  margin:10px 0;
+  padding:12px;
+  border-radius:10px;
+  max-width:80%;
+}
+
+.user{
+  background:#2563eb;
+  margin-left:auto;
+}
+
+.bot{
+  background:#334155;
+}
+
+.input-area{
+  display:flex;
+  border-top:1px solid #475569;
+}
+
+input{
+  flex:1;
+  padding:15px;
+  border:none;
+  outline:none;
+  font-size:16px;
+}
+
+button{
+  padding:15px 20px;
+  border:none;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+  <div class="header">
+    Vaibhav AI
+  </div>
+
+  <div class="chat-box" id="chatBox">
+
+    <div class="message bot">
+      Hello! I am Vaibhav AI 🤖
+    </div>
+
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Ask something...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+  let input = document.getElementById("userInput");
+  let chatBox = document.getElementById("chatBox");
+
+  let text = input.value;
+
+  if(text.trim() === ""){
+    return;
+  }
+
+  // USER MESSAGE
+  let userMessage = document.createElement("div");
+  userMessage.classList.add("message","user");
+  userMessage.innerText = text;
+
+  chatBox.appendChild(userMessage);
+
+  // BOT REPLY
+  let botMessage = document.createElement("div");
+  botMessage.classList.add("message","bot");
+
+  // SIMPLE AI RESPONSES
+  let reply = "";
+
+  if(text.toLowerCase().includes("hello")){
+    reply = "Hello 👋";
+  }
+  else if(text.toLowerCase().includes("your name")){
+    reply = "I am Vaibhav AI.";
+  }
+  else if(text.toLowerCase().includes("how are you")){
+    reply = "I am doing great 🚀";
+  }
+  else{
+    reply = "I am still learning AI 🤖";
+  }
+
+  setTimeout(() => {
+    botMessage.innerText = reply;
+    chatBox.appendChild(botMessage);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  },500);
+
+  input.value = "";
+}
+
+</script>
+
+</body>
+</html>
